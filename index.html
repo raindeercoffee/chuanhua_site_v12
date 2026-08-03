@@ -495,11 +495,16 @@ footer .back-garden{color:#BCD4E2!important}
 /* ── 表單輸入字/框在暗底 ── */
 .fm-field input,.fm-field select,.fm-field textarea{color:#E9F0F7!important;border-color:rgba(255,255,255,.16)!important}
 .cs-check{border-color:rgba(255,255,255,.12)!important}
-/* ── nav 列 → 深底；深色 logo(v/h-color)提亮成白，入場頁白 logo 不動 ── */
-nav{background:rgba(28,34,58,.88)!important;border-bottom-color:rgba(255,255,255,.10)!important}
-.nav-links{background:rgba(26,32,54,.97)!important}
-.nav-cta{background:#3A6FA0!important;color:#fff!important}
-img[src*="logo-v-color"],img[src*="logo-h-color"]{filter:brightness(0) invert(1);opacity:.94}
+/* ── nav 區還原原始淺色列 + 原色 logo（此區不套暗色，維持原本清楚樣貌）── */
+nav{background:rgba(244,248,250,.86)!important;border-bottom:1px solid rgba(210,224,231,.6)!important}
+.nav-links{background:rgba(244,248,250,.97)!important}
+.nav-links a{color:#41596A!important}
+.nav-links a:hover{color:#57b6d9!important}
+.nav-cta{background:#2F4E63!important;color:#fff!important}
+.burger span{background:#2F4E63!important}
+.nav-logo img{filter:none!important}
+/* 只提亮「深底上看不清」的 logo：河岸／教室／footer（入場頁本就是白 logo）── */
+.shore-logo,.st-top img,footer img{filter:brightness(0) invert(1);opacity:.94}
 </style>
 </head>
 <body class="lock">
