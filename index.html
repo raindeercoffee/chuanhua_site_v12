@@ -458,19 +458,31 @@ footer .back-garden:hover{color:var(--pink-deep)}
   --river-deep:#F3EDE4; /* 大標 → 暖象牙白 */
   --river:#93C0E4;      /* 強調/連結 → 天空藍 */
   --courses-t:#2A3252; --courses-b:#20283F; --flow-t:#242A46; --flow-b:#1B2036;
+  --about-t:#242A46; --about-b:#1E2740; --services-t:#20283F; --services-b:#283150;
+  --cases-t:#283150; --cases-b:#1E2740; --policy-t:#242A46; --policy-b:#1C2338;
+  --resonance-t:#20283F; --resonance-b:#262E4A;
 }
 body{background:#22233E}
 /* ── 大面積底色 → 深靛藍 ── */
-#garden{background:linear-gradient(180deg,#1E2740 0%,#26324E 42%,#2C3A55 72%,#20293F 100%)!important}
-#shore{background:linear-gradient(180deg,#2A2A46 0%,#22283F 50%,#1A2236 80%,#242844 100%)!important}
-#shore::before{opacity:.10!important}
+#garden{background:linear-gradient(180deg,#1E2740 0%,#243156 45%,#1C2942 75%,#182034 100%)!important}
+#garden::before{background:radial-gradient(ellipse 85% 55% at 50% 30%,rgba(70,110,165,.26),rgba(30,40,70,0) 68%)!important;opacity:1!important} /* 移除 watercolor 螺旋，純深藍暈染 */
+#shore{background:radial-gradient(ellipse 95% 75% at 50% 32%,#2A3556 0%,#1E2742 55%,#171E30 100%)!important} /* 深藍漸層暈染，偏深 */
+#shore::before{background:none!important;opacity:0!important} /* 移除 watercolor 螺旋 */
 #studio{background:linear-gradient(180deg,#24243C 0%,#2C2C46 40%,#242A44 70%,#20263E 100%)!important}
 #studio::before{background:radial-gradient(ellipse 55% 40% at 50% 0%,rgba(120,140,210,.16),transparent 68%)!important}
 #consult{background:linear-gradient(180deg,#24243C 0%,#2A2A46 45%,#20263E 100%)!important}
-footer{background:linear-gradient(135deg,#242A46,#1B2036)!important}
+footer{background:linear-gradient(135deg,#242A46,#1B2036)!important;color:#BCD4E2!important}
+footer .back-garden{color:#BCD4E2!important}
+.contact{background:linear-gradient(180deg,#20283F 0%,#1A2236 100%)!important}
+.contact .eyebrow::before{background:#93C0E4!important}
+.contact .eyebrow{color:#93C0E4!important}
+.esec{--et-eb:#93C0E4!important} /* 非 on-dark 段 eyebrow 由深藍轉亮 */
+.about-art::before{background:radial-gradient(ellipse 60% 55% at 50% 55%,rgba(90,120,175,.22),transparent 75%)!important}
+.services::before{background:radial-gradient(ellipse 50% 36% at 82% 8%,rgba(120,150,210,.10),transparent 70%)!important}
 /* ── 白底面板/卡片/表單 → 深面板 ── */
-.srv,.cs-card,.cs-check,.cs-chip,.line-box,.fm-field input,.fm-field select,.fm-field textarea{background:#2A2A44!important}
-.line-box{border-color:rgba(255,255,255,.10)!important}
+.srv,.cs-card,.cs-check,.cs-chip,.line-box,.fm-field input,.fm-field select,.fm-field textarea,
+.kw,.case,.step-dot,.contact-card{background:#2A2A44!important}
+.line-box,.kw,.case,.contact-card{border-color:rgba(255,255,255,.10)!important}
 .course{border-color:rgba(255,255,255,.10)!important}
 /* ── HEAD 大標 → 暖象牙白 ── */
 .st-head h2,#studio .course h3,.cs-card h3,.cs-ok h4,.price-line{color:#F3EDE4!important}
