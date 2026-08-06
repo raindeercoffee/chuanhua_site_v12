@@ -135,6 +135,9 @@ body.studio-open .page-arrows{opacity:0;pointer-events:none}
 #shore h1{font-family:var(--serif);font-size:clamp(26px,4.6vw,44px);font-weight:600;line-height:1.7;margin-bottom:1.2rem;color:var(--river-deep)}
 #shore h1 em{font-style:normal;color:var(--pink-deep)}
 #shore p{color:var(--ink-soft);max-width:520px;font-size:15px;font-weight:300}
+#shoreLogo{transform:translate(0px,0px)}
+#shoreHeadline{font-size:29px!important;transform:translate(-9px,29px)}
+#shoreIntro{font-family:var(--serif)!important;font-size:16px!important;transform:translate(-8px,-9px)}
 .shore-petal{position:absolute;top:-30px;z-index:2;width:13px;height:10px;border-radius:80% 0 80% 0;background:linear-gradient(135deg,var(--pink),rgba(239,191,202,.35));opacity:0;animation:fall linear infinite}
 @keyframes fall{0%{opacity:0;transform:translate(0,0) rotate(0)}8%{opacity:.85}100%{opacity:0;transform:translate(-80px,80vh) rotate(500deg)}}
 
@@ -564,9 +567,15 @@ nav{background:rgba(244,248,250,.86)!important;border-bottom:1px solid rgba(210,
   <!-- 河岸開場 -->
   <header id="shore">
     <div class="wrap">
-      <img class="shore-logo" src="assets/logo-v-color.png" alt="川花 RIVER FLOWER">
-      <h1>每一朵花，都是一個品牌；<br>請讓我們陪你<em>開花</em>。</h1>
-      <p>川花是安靜而真實的河，長出每一朵靈魂等待綻放的花。我們將內容行銷與市場脈動，一瓢一瓢澆進你的品牌裡——直到它開出自己的樣子。</p>
+      <img class="shore-logo" id="shoreLogo" src="assets/logo-v-color.png" alt="川花 RIVER FLOWER">
+      <div class="shore-textblock" id="shoreTextBlock">
+        <p id="shoreIntro">花，不會執著上一個季節。<br>
+河，也不會逆著時間流。<br>
+我們相信，每一次成長，都需要告別上一個自己。<br>
+所以，我們不販售流量。<br>
+我們陪品牌完成一次又一次的蛻變。</p>
+        <h1 id="shoreHeadline">川流不息，<em>花</em>開有時。</h1>
+      </div>
     </div>
   </header>
 
