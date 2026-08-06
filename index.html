@@ -118,11 +118,6 @@ nav.scrolled{box-shadow:0 4px 24px rgba(47,78,99,.08)}
 .nav-links a:hover{color:var(--blue)}
 .nav-cta{background:var(--river-deep);color:#fff!important;padding:8px 18px;border-radius:99px;transition:background .25s}
 .nav-cta:hover{background:var(--pink-deep)}
-.page-arrows{position:fixed;right:24px;top:50%;z-index:480;display:flex;flex-direction:column;gap:8px;transform:translateY(-50%);opacity:0;pointer-events:none;transition:opacity .35s}
-body.site-open .page-arrows{opacity:.96;pointer-events:auto}
-body.studio-open .page-arrows{opacity:0;pointer-events:none}
-.page-arrows button{width:48px;height:48px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--river-deep);font-size:18px;line-height:1;cursor:pointer;box-shadow:0 5px 18px rgba(47,78,99,.16);transition:transform .25s,background .25s,color .25s}
-.page-arrows button:hover{transform:translateY(-2px);background:var(--river-deep);color:#fff}
 .burger{display:none;background:none;border:none;cursor:pointer;padding:6px}
 .burger span{display:block;width:22px;height:2px;background:var(--river-deep);margin:5px 0}
 
@@ -500,7 +495,6 @@ footer .back-garden{color:#BCD4E2!important}
 .cs-check{border-color:rgba(255,255,255,.12)!important}
 /* ── nav 區還原原始淺色列 + 原色 logo（此區不套暗色，維持原本清楚樣貌）── */
 nav{background:rgba(244,248,250,.86)!important;border-bottom:1px solid rgba(210,224,231,.6)!important}
-.nav-links{background:rgba(244,248,250,.97)!important}
 .nav-links a{color:#41596A!important}
 .nav-links a:hover{color:#57b6d9!important}
 .nav-cta{background:#2F4E63!important;color:#fff!important}
@@ -556,11 +550,6 @@ nav{background:rgba(244,248,250,.86)!important;border-bottom:1px solid rgba(210,
     </ul>
   </div>
 </nav>
-
-<div class="page-arrows" aria-label="頁面導覽">
-  <button type="button" id="pageUp" aria-label="向上">▲</button>
-  <button type="button" id="pageDown" aria-label="向下">▼</button>
-</div>
 
 <div id="main">
 
@@ -816,8 +805,8 @@ nav{background:rgba(244,248,250,.86)!important;border-bottom:1px solid rgba(210,
           <li>結束後附行動建議，不說空話</li>
         </ul>
         <div class="price-line">NT$ 3,600 <small>/ 1 小時</small></div>
-        <a class="btn" href="https://line.me/R/ti/p/@riverflower2025" target="_blank" rel="noopener">立即預約</a>
-        <p class="pay-note">現可透過官方 LINE 預約，專人確認時段</p>
+        <a class="btn" href="https://line.me/R/ti/p/@riverflower2025" target="_blank" rel="noopener">立即付款</a>
+        <p class="pay-note">付款完成後，請透過官方 LINE 與專人確認時段</p>
       </article>
     </div>
   </div>
@@ -1112,8 +1101,6 @@ const nav=$('#nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
 $('#burger').addEventListener('click',()=>$('#navLinks').classList.toggle('open'));
 $$('#navLinks a').forEach(a=>a.addEventListener('click',()=>$('#navLinks').classList.remove('open')));
-$('#pageUp').addEventListener('click',()=>scrollBy({top:-Math.max(360,innerHeight*.86),behavior:reduced?'auto':'smooth'}));
-$('#pageDown').addEventListener('click',()=>scrollBy({top:Math.max(360,innerHeight*.86),behavior:reduced?'auto':'smooth'}));
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.16});
 $$('.reveal,#steps').forEach(el=>io.observe(el));
