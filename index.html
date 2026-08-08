@@ -73,8 +73,12 @@ h2 em{font-style:normal;color:var(--pink-deep)}
 /* 五朵花改用可替換的圖檔(assets/flower_1~5),之後手繪同檔名覆蓋即可 */
 /* g-imgwrap 負責搖曳(rotate)、g-img 負責浮現(opacity+translate/scale),分兩層避免搶同一個 transform 導致花消失 */
 .g-flower .g-imgwrap{display:block;transform-origin:bottom center}
-.g-flower.swaying .g-imgwrap{animation:g-sway 5.2s ease-in-out infinite alternate}
-@keyframes g-sway{from{transform:rotate(-2.6deg)}to{transform:rotate(2.6deg)}}
+.g-flower.swaying .g-imgwrap{animation:g-sway 5.6s ease-in-out infinite alternate}
+.g-flower.swaying:nth-child(1) .g-imgwrap{animation-duration:5.0s;animation-delay:-1.3s}
+.g-flower.swaying:nth-child(2) .g-imgwrap{animation-duration:6.3s;animation-delay:-3.7s}
+.g-flower.swaying:nth-child(3) .g-imgwrap{animation-duration:5.6s;animation-delay:-0.5s}
+.g-flower.swaying:nth-child(4) .g-imgwrap{animation-duration:6.9s;animation-delay:-2.6s}
+@keyframes g-sway{from{transform:rotate(-3.4deg) translateX(-3px)}to{transform:rotate(3.4deg) translateX(3px)}}
 .g-flower .g-img{display:block;opacity:0;transform:translateY(16px) scale(.55);transform-origin:bottom center}
 .g-flower.bloomed .g-img{animation:g-rise 1.15s cubic-bezier(.34,1.56,.64,1) forwards}
 @keyframes g-rise{0%{opacity:0;transform:translateY(16px) scale(.5)}55%{opacity:1}100%{opacity:1;transform:translateY(0) scale(1)}}
@@ -84,10 +88,12 @@ h2 em{font-style:normal;color:var(--pink-deep)}
 .g-flower:hover .g-imgwrap{animation-play-state:paused}
 .g-flower:hover .g-img{filter:drop-shadow(0 4px 14px rgba(217,142,163,.6))}
 .g-flower:hover .g-label{color:var(--pink-deep)}
-.g-flower.picked .g-img{animation:g-pick .8s ease forwards}
-@keyframes g-pick{to{opacity:0;transform:translateY(-12px) scale(.1) rotate(40deg)}}
+.g-flower.picked .g-img{animation:g-pick 1.8s ease-in-out forwards}
+.g-flower:nth-child(1) .g-img,.g-flower:nth-child(2) .g-img{--fly-x:-80px;--fly-rot:-20deg}
+.g-flower:nth-child(3) .g-img,.g-flower:nth-child(4) .g-img{--fly-x:80px;--fly-rot:20deg}
+@keyframes g-pick{0%{opacity:1;transform:translate(0px,0px) scale(1) rotate(0deg)}30%{opacity:1;transform:translate(calc(var(--fly-x,80px) * 0.25),-42px) scale(1.03) rotate(calc(var(--fly-rot,20deg) * 0.25))}100%{opacity:0;transform:translate(var(--fly-x,80px),-232px) scale(1.05) rotate(var(--fly-rot,20deg))}}
 /* 摘花後飄散的花瓣 */
-.fall-petal{position:fixed;z-index:950;width:15px;height:12px;border-radius:80% 0 80% 0;background:linear-gradient(135deg,var(--pink),rgba(239,191,202,.35));pointer-events:none;animation:petal-drift 1.5s ease-in forwards}
+.fall-petal{position:fixed;z-index:950;width:15px;height:12px;border-radius:80% 0 80% 0;background:linear-gradient(135deg,var(--pink),rgba(239,191,202,.35));pointer-events:none;animation:petal-drift 1.5s ease-out forwards}
 @keyframes petal-drift{
   0%{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}
   100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(.55)}
@@ -984,7 +990,7 @@ function scatterPetals(x,y,color){
     p.style.left=x+'px'; p.style.top=y+'px';
     p.style.background=`linear-gradient(135deg,${color},rgba(255,255,255,.25))`;
     p.style.setProperty('--dx',(Math.random()*260-130)+'px');
-    p.style.setProperty('--dy',(90+Math.random()*300)+'px');
+    p.style.setProperty('--dy',-(90+Math.random()*300)+'px');
     p.style.setProperty('--rot',(Math.random()*640-320)+'deg');
     document.body.appendChild(p);
     setTimeout(()=>p.remove(),1600);
@@ -1015,13 +1021,10 @@ field.addEventListener('click',e=>{
   const btn=e.target.closest('.g-flower');
   if(!btn || !btn.classList.contains('bloomed') || btn.classList.contains('picked')) return;
   btn.classList.add('picked');
-  const head=btn.querySelector('.g-img').getBoundingClientRect();
-  const f=FLOWERS[[...field.children].indexOf(btn)];
-  scatterPetals(head.left+head.width/2, head.top+head.height*.28, f.petal);
   setTimeout(()=>{
     if(btn.dataset.target==='studio' || btn.dataset.target==='studio-flow'){ enterMain(null); openStudio(btn.dataset.target==='studio-flow'?'#flow':null); }
     else enterMain(btn.dataset.target);
-  }, reduced?0:650);
+  }, reduced?0:1600);
 });
 $('#g-skip').addEventListener('click',()=>enterMain(null));
 
