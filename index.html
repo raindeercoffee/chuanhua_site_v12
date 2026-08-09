@@ -426,7 +426,10 @@ footer .back-garden:hover{color:var(--pink-deep)}
   .step-line{display:none}
   section{padding:66px 0}
   .about-art{order:-1}
-  #g-field{flex-wrap:wrap;gap:4px 14px;max-width:92vw}
+  #g-field{flex-wrap:wrap;gap:18px 16px;max-width:88vw;justify-content:center}
+  .g-flower{flex:0 0 calc(50% - 16px);max-width:calc(50% - 16px);display:flex;flex-direction:column;align-items:center}
+  .g-flower .g-imgwrap{max-width:100%}
+  .g-flower .g-img{max-width:min(160px,42vw);height:auto}
 }
 @media (max-width:940px){
   .nav-links{position:fixed;top:61px;right:-100%;flex-direction:column;background:rgba(244,248,250,.97);width:min(320px,72%);height:100vh;padding:34px 30px;gap:20px;transition:right .35s;box-shadow:-8px 0 30px rgba(47,78,99,.12);align-items:flex-start}
@@ -443,7 +446,7 @@ footer .back-garden:hover{color:var(--pink-deep)}
   .g-logo{width:64px;margin-bottom:.5rem}
   .g-kicker{font-size:calc(var(--gk-size) * .83);letter-spacing:calc(var(--gk-ls) * .71)}
   .g-title{font-size:calc(var(--gt-size) * .625);margin-top:6px}
-  #g-field{margin-top:1rem;gap:2px 10px}
+  #g-field{margin-top:1rem;gap:22px 12px}
 }
 /* 視窗較矮時(高度不足):縮小花園上方 LOGO+標語區塊,把空間讓給五朵花,避免被裁掉
    ↓ 字級/行距/字距一律用「面板變數 × 比例」,這樣文字樣式面板的滑桿在任何視窗尺寸都能生效 */
