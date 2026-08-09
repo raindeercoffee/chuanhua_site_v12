@@ -14,14 +14,14 @@
 <meta property="og:title" content="川花 RIVER FLOWER｜川流不息，花開有時">
 <meta property="og:description" content="川花：從河川長出花。品牌行銷統籌、廣告投放與花藝教學——為你做好每一朵花，也陪你的品牌開花。">
 <meta property="og:url" content="https://raindeercoffee.github.io/chuanhua_site_v12/">
-<meta property="og:image" content="https://raindeercoffee.github.io/chuanhua_site_v12/assets/og-cover.jpg">
+<meta property="og:image" content="https://raindeercoffee.github.io/chuanhua_site_v12/assets/og-cover.jpg?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="川花 RIVER FLOWER｜川流不息，花開有時">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="川花 RIVER FLOWER｜川流不息，花開有時">
 <meta name="twitter:description" content="川花：從河川長出花。品牌行銷統籌、廣告投放與花藝教學——為你做好每一朵花，也陪你的品牌開花。">
-<meta name="twitter:image" content="https://raindeercoffee.github.io/chuanhua_site_v12/assets/og-cover.jpg">
+<meta name="twitter:image" content="https://raindeercoffee.github.io/chuanhua_site_v12/assets/og-cover.jpg?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+TC:wght@300;400;600;700&family=Noto+Sans+TC:wght@200;300;400;500;700&display=swap" rel="stylesheet">
@@ -143,6 +143,9 @@ nav.scrolled{box-shadow:0 4px 24px rgba(47,78,99,.08)}
 .nav-cta:hover{background:var(--pink-deep)}
 .burger{display:none;background:none;border:none;cursor:pointer;padding:6px}
 .burger span{display:block;width:22px;height:2px;background:var(--river-deep);margin:5px 0}
+.nav-close-item{display:none}
+.nav-close{background:none;border:1px solid var(--ink-soft);border-radius:22px;padding:9px 20px;color:var(--ink-soft);font-size:13.5px;letter-spacing:1.5px;font-weight:500;cursor:pointer;transition:all .25s;-webkit-tap-highlight-color:transparent}
+.nav-close:hover,.nav-close:focus{background:var(--ink-soft);color:#fff;outline:none}
 
 /* 主頁 hero-lite:河岸開場 ─ 水彩晨光 */
 #shore{position:relative;min-height:100svh;display:flex;align-items:center;color:var(--river-deep);overflow:hidden;
@@ -435,6 +438,7 @@ footer .back-garden:hover{color:var(--pink-deep)}
   .nav-links{position:fixed;top:61px;right:-100%;flex-direction:column;background:rgba(244,248,250,.97);width:min(320px,72%);height:100vh;padding:34px 30px;gap:20px;transition:right .35s;box-shadow:-8px 0 30px rgba(47,78,99,.12);align-items:flex-start}
   .nav-links.open{right:0}
   .burger{display:block}
+  .nav-close-item{display:block;margin-bottom:14px;align-self:flex-end}
 }
 @media (max-width:640px){
   .srv-grid{grid-template-columns:1fr}
@@ -578,6 +582,7 @@ nav{background:rgba(244,248,250,.86)!important;border-bottom:1px solid rgba(210,
     <a class="nav-logo" href="#" id="navLogo"><img src="assets/logo-h-color.png" alt="川花 RIVER FLOWER"></a>
     <button class="burger" id="burger" aria-label="選單"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="navLinks">
+      <li class="nav-close-item"><button class="nav-close" id="navClose" type="button" aria-label="摺疊選單">× 摺疊功能區</button></li>
       <li><a href="#about">關於我們</a></li>
       <li><a href="#services">我們做的事</a></li>
       <li><a href="#cases">我們開過的花</a></li>
@@ -1132,6 +1137,8 @@ if(stFlowLink) stFlowLink.addEventListener('click',e=>{e.preventDefault();closeS
 const nav=$('#nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passive:true});
 $('#burger').addEventListener('click',()=>$('#navLinks').classList.toggle('open'));
+$('#navClose').addEventListener('click',()=>$('#navLinks').classList.remove('open'));
+$$('#navLinks a').forEach(a=>a.addEventListener('click',()=>$('#navLinks').classList.remove('open')));
 $$('#navLinks a').forEach(a=>a.addEventListener('click',()=>$('#navLinks').classList.remove('open')));
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.16});
