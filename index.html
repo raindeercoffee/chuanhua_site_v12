@@ -88,7 +88,7 @@ h2 em{font-style:normal;color:var(--pink-deep)}
 .g-flower:hover .g-imgwrap{animation-play-state:paused}
 .g-flower:hover .g-img{filter:drop-shadow(0 4px 14px rgba(217,142,163,.6))}
 .g-flower:hover .g-label{color:var(--pink-deep)}
-.g-flower.picked .g-img{animation:g-pick 1.8s ease-in-out forwards}
+.g-flower.picked .g-img{animation:g-pick 1.4s linear forwards}
 .g-flower:nth-child(1) .g-img,.g-flower:nth-child(2) .g-img{--fly-x:-80px;--fly-rot:-20deg}
 .g-flower:nth-child(3) .g-img,.g-flower:nth-child(4) .g-img{--fly-x:80px;--fly-rot:20deg}
 @keyframes g-pick{0%{opacity:1;transform:translate(0px,0px) scale(1) rotate(0deg)}30%{opacity:1;transform:translate(calc(var(--fly-x,80px) * 0.25),-42px) scale(1.03) rotate(calc(var(--fly-rot,20deg) * 0.25))}100%{opacity:0;transform:translate(var(--fly-x,80px),-232px) scale(1.05) rotate(var(--fly-rot,20deg))}}
@@ -128,8 +128,11 @@ nav.scrolled{box-shadow:0 4px 24px rgba(47,78,99,.08)}
 .burger span{display:block;width:22px;height:2px;background:var(--river-deep);margin:5px 0}
 
 /* 主頁 hero-lite:河岸開場 ─ 水彩晨光 */
-#shore{position:relative;min-height:72svh;display:flex;align-items:center;color:var(--river-deep);overflow:hidden;
+#shore{position:relative;min-height:100svh;display:flex;align-items:center;color:var(--river-deep);overflow:hidden;
   background:linear-gradient(180deg,#EAF2F8 0%,#CBDEEB 50%,#B7CFE0 80%,#DCE9F1 100%);padding:150px 0 120px}
+/* 花朵落地目標:每個都撐一整屏、內容置中(一個欄目一頁) */
+#about,#cases{min-height:100svh;display:grid;align-content:center}
+#about>.wrap,#cases>.wrap{width:100%}
 #shore::before{content:"";position:absolute;inset:0;background:url('assets/watercolor.png') center/cover;opacity:.22;pointer-events:none}
 #shore .wrap{position:relative;z-index:4}
 .shore-logo{width:min(104px,24vw);margin-bottom:1.8rem}
@@ -315,7 +318,7 @@ footer .back-garden:hover{color:var(--pink-deep)}
 #studio.open{visibility:visible;opacity:1}
 #studio::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 55% 40% at 50% 0%,rgba(163,178,224,.20),transparent 68%);pointer-events:none}
 .st-wrap{max-width:1100px;margin:0 auto;padding:60px 24px 90px;position:relative}
-.st-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:44px}
+.st-top{display:flex;justify-content:flex-end;align-items:center;margin-bottom:44px}
 .st-top img{height:44px;width:auto}
 .st-back{background:none;border:1px solid rgba(120,110,155,.38);border-radius:99px;color:#726A8C;font-family:var(--sans);font-size:13px;letter-spacing:2px;padding:9px 22px;cursor:pointer;transition:background .3s,color .3s}
 .st-back:hover{background:rgba(179,155,214,.16);color:#574C74}
@@ -474,6 +477,11 @@ body{background:#22233E}
 #shore::before{background:none!important;opacity:0!important} /* 移除 watercolor 螺旋 */
 #studio{background:linear-gradient(180deg,#24243C 0%,#2C2C46 40%,#242A44 70%,#20263E 100%)!important}
 #studio::before{background:radial-gradient(ellipse 55% 40% at 50% 0%,rgba(120,140,210,.16),transparent 68%)!important}
+/* ── 開花轉場（暗色版）：白閃 → 深靛藍暈開，花瓣改中深色調飛進去 ── */
+#bloomfx .fx-circle{background:radial-gradient(circle,#3A4166 0%,#2C2C46 40%,#242A44 62%,#20263E 80%,rgba(32,38,62,0) 100%)!important}
+#bloomfx .fx-text{color:#D7E3EE!important}
+#bloomfx .fx-petal{background:linear-gradient(135deg,#7C6494,#3E5A6E)!important}
+#bloomfx .fx-petal:nth-child(even){background:linear-gradient(135deg,#4F7168,#3A4463)!important}
 #consult{background:linear-gradient(180deg,#24243C 0%,#2A2A46 45%,#20263E 100%)!important}
 footer{background:linear-gradient(135deg,#242A46,#1B2036)!important;color:#BCD4E2!important}
 footer .back-garden{color:#BCD4E2!important}
@@ -782,7 +790,6 @@ nav{background:rgba(244,248,250,.86)!important;border-bottom:1px solid rgba(210,
 <div id="studio">
   <div class="st-wrap">
     <div class="st-top">
-      <img src="assets/logo-h-color.png" alt="川花 RIVER FLOWER">
       <button class="st-back" id="stBack">← 回到河邊</button>
     </div>
     <div class="st-head">
@@ -956,9 +963,9 @@ if(matchMedia('(hover:hover)').matches && !reduced){
 /* ═════════ L1 花園:五朵花逐朵綻放 ═════════ */
 /* img = 花朵圖檔名(從左到右 1~5),之後手繪同檔名覆蓋 assets/ 即可替換 */
 const FLOWERS=[
-  {label:"關於我們",  en:"WHO WE ARE",  target:"#about",  img:"flower_1_farLeft.png",  petal:"#EFBFCA", h:118, s:1.0},
-  {label:"我們開過的花",en:"CASES",      target:"#cases",  img:"flower_2_left.png",     petal:"#F5D4DC", h:138, s:1.1},
-  {label:"開花的流程",en:"HOW IT WORKS",target:"studio-flow",img:"flower_4_right.png",    petal:"#EFBFCA", h:132, s:1.06},
+  {label:"關於我們",  en:"WHO WE ARE",  target:"#shore",  img:"flower_1_farLeft.png",  petal:"#EFBFCA", h:118, s:1.0},
+  {label:"如何開花",  en:"HOW IT WORKS",target:"#about",  img:"flower_2_left.png",     petal:"#F5D4DC", h:138, s:1.1},
+  {label:"我們開過的花",en:"CASES",     target:"#cases",  img:"flower_4_right.png",    petal:"#EFBFCA", h:132, s:1.06},
   {label:"找川花說話",en:"CONTACT",     target:"#contact",img:"flower_5_farRight.png", petal:"#F5D4DC", h:112, s:.94},
 ];
 const field=$('#g-field');
@@ -1024,7 +1031,7 @@ field.addEventListener('click',e=>{
   setTimeout(()=>{
     if(btn.dataset.target==='studio' || btn.dataset.target==='studio-flow'){ enterMain(null); openStudio(btn.dataset.target==='studio-flow'?'#flow':null); }
     else enterMain(btn.dataset.target);
-  }, reduced?0:1600);
+  }, reduced?0:1100);
 });
 $('#g-skip').addEventListener('click',()=>enterMain(null));
 
